@@ -2,12 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<!-- This site is hosted on Netlify. Anyone can build and deploy a site
-     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=8f521f57-a98e-4899-baab-e40a5ef198f0
-     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Operacional — Brudam Logística</title>
-     <link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="logo.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -181,7 +178,6 @@ function setStatus(state, text){
   document.getElementById('statusText').textContent=text;
   if(state==='ok'){ const n=new Date(); document.getElementById('statusTime').textContent='Atualizado em '+n.toLocaleDateString('pt-BR')+' às '+n.toLocaleTimeString('pt-BR'); }
 }
-}
 
 function parseDate(str){
   if(!str) return null;
@@ -288,8 +284,6 @@ function processNC(rows){
 }
 
 function fetchCSV(url){
-  return new Promise(async (resolve,reject)=>{
-       function fetchCSV(url){
   return new Promise(async (resolve,reject)=>{
     url = url + '&t=' + Date.now();
     // Multiple CORS proxies as fallback (direct Google Sheets has CORS issues from browsers)
