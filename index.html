@@ -181,6 +181,7 @@ function setStatus(state, text){
   document.getElementById('statusText').textContent=text;
   if(state==='ok'){ const n=new Date(); document.getElementById('statusTime').textContent='Atualizado em '+n.toLocaleDateString('pt-BR')+' às '+n.toLocaleTimeString('pt-BR'); }
 }
+}
 
 function parseDate(str){
   if(!str) return null;
