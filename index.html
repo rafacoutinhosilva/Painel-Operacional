@@ -288,6 +288,9 @@ function processNC(rows){
 
 function fetchCSV(url){
   return new Promise(async (resolve,reject)=>{
+       function fetchCSV(url){
+  return new Promise(async (resolve,reject)=>{
+    url = url + '&t=' + Date.now();
     // Multiple CORS proxies as fallback (direct Google Sheets has CORS issues from browsers)
     const attempts = [
       'https://corsproxy.io/?' + encodeURIComponent(url),
