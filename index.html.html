@@ -2,6 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=8f521f57-a98e-4899-baab-e40a5ef198f0
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Operacional — Brudam Logística</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -175,11 +178,7 @@ function setStatus(state, text){
   const dot=document.getElementById('statusDot');
   dot.className='dot '+(state==='ok'?'on':state==='err'?'off':'loading');
   document.getElementById('statusText').textContent=text;
-  if(state==='ok'){
-    // Data + hora da última atualização (ex.: 01/10/2026 às 14:32:05)
-    const agora=new Date();
-    document.getElementById('statusTime').textContent='Atualizado: '+agora.toLocaleDateString('pt-BR')+' às '+agora.toLocaleTimeString('pt-BR');
-  }
+  if(state==='ok'){ const n=new Date(); document.getElementById('statusTime').textContent='Atualizado em '+n.toLocaleDateString('pt-BR')+' às '+n.toLocaleTimeString('pt-BR'); }
 }
 
 function parseDate(str){
