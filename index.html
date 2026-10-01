@@ -356,7 +356,7 @@ function minToTime(m){return Math.floor(m/60)+':'+String(m%60).padStart(2,'0')}
 function sect(e,t,c){return '<div class="sect"><div class="sect-i" style="background:var('+c+'L)">'+e+'</div><div class="sect-t" style="color:var('+c+')">'+t+'</div></div>';}
 
 function rMF(){
-  const months=[...new Set(DATA.map(d=>d.month))].sort();
+  const months=[...new Set(DATA.map(d=>d.month))].sort((a,b)=>a-b);
   document.getElementById('mFilter').innerHTML='<span style="font-size:10px;color:var(--dim);font-weight:600;margin-right:6px;letter-spacing:.5px">PERÍODO:</span>'+months.map(m=>'<button class="mf-b '+(selM.has(m)?'active':'')+'" onclick="tM('+m+')">'+MS[m]+'</button>').join('')+'<button class="mf-b '+(selM.size===months.length?'active':'')+'" onclick="tMA()" style="margin-left:3px">Todos</button>';
 }
 function tM(m){if(selM.has(m)&&selM.size>1)selM.delete(m);else selM.add(m);rMF();render()}
@@ -481,7 +481,7 @@ function render(){
 function toggleDet(id,btn){const el=document.getElementById('det-'+id);if(el){el.classList.toggle('open');btn.classList.toggle('open')}}
 
 function rTable(D){
-  const months=[...selM].sort();
+  const months=[...selM].sort((a,b)=>a-b);
   let h='<div class="cd" style="margin-bottom:20px"><div class="ts"><table><thead><tr><th>Mês</th><th class="tr">Dias</th><th class="tr">Entregas</th><th class="tr">Coletas</th><th class="tr">Ent/dia</th><th class="tr">Col/dia</th><th class="tr">Após 17h</th><th class="tr">Exp 24h</th><th class="tr">Manut</th><th class="tr">Truck</th><th class="tr">Carreta</th><th class="tc">Nível</th><th class="tc">Lib Média</th><th class="tc">% &lt;17h</th></tr></thead><tbody>';
   let tD=0,tE=0,tC=0,tA=0,tX=0,tM=0,tT=0,tCa=0;
   for(const m of months){const md=D.filter(d=>d.month===m);if(!md.length)continue;
@@ -565,7 +565,7 @@ function initCharts(D){
   ci.push(new Chart(document.getElementById('cNC1'),{type:'bar',data:{labels:top10.map(c=>c[0].length>22?c[0].substring(0,20)+'…':c[0]),datasets:[{label:'Qtd',data:top10.map(c=>c[1]),backgroundColor:CL2.slice(0,10),borderRadius:4,yAxisID:'y'},{label:'% Acum.',data:top10.map(c=>{cum+=c[1]/NC.length*100;return cum}),type:'line',borderColor:'#ef4444',backgroundColor:'transparent',tension:.3,pointRadius:4,borderWidth:2,yAxisID:'y1'}]},options:{...CDF,scales:{x:{...CDF.scales.x,ticks:{...CDF.scales.x.ticks,font:{size:8}}},y:{...CDF.scales.y,position:'left'},y1:{position:'right',ticks:{color:'#ef4444',font:{family:'Outfit',size:9},callback:v=>v+'%'},grid:{display:false},border:{display:false},max:100}}}}));
 
   // NC2 By month
-  const ncM=[...selM].sort();
+  const ncM=[...selM].sort((a,b)=>a-b);
   ci.push(new Chart(document.getElementById('cNC2'),{type:'bar',data:{labels:ncM.map(m=>MN[m]),datasets:[{label:'NCs',data:ncM.map(m=>NC.filter(n=>n.m===m).length),backgroundColor:'rgba(239,68,68,.6)',borderRadius:6}]},options:{...CDF,plugins:{...CDF.plugins,legend:{display:false}}}}));
 
 }
